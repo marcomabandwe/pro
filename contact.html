@@ -44,7 +44,31 @@
           </ul>
           <p>CONTACT</p>
           <a class="cvna" href="Cv jean-marc.docx"> Télécharge mon cv</a>
+          <a class="cvna" href="telech.html"> Télécharge la chanson</a>
     </header>
+    <script>
+      // Fonction pour afficher le message
+      function afficherMessage() {
+        document.getElementById("message").style.display = "block";
+      }
+      
+      // Appel de la fonction afficherMessage après 5 secondes (5000 millisecondes)
+      window.onload = function() {
+        setTimeout(afficherMessage, 5000);
+      };
+      </script>
+      <style>
+      #message {
+        display: none;
+      }
+      </style>
+      </head>
+      <body>
+      
+      <div id="message">
+        <p>la chanson de notre artiste Andy'B est déjà disponible.</p>
+      </div>
+      
     <h1>Passer votre commande</h1>
     <form style="text-align: center;" action="mailto:mabandwemarco@gmail.com" method="post" enctype="text/plain">
         <label for="name">Nom complet  :</label>
