@@ -68,22 +68,50 @@
       <div id="message">
         <p>la chanson de notre artiste Andy'B est déjà disponible.</p>
       </div>
+      <br>
+      <style>
+        /* Style du bouton */
+        #mon-bouton {
+            background-color: #3CBC8D;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            animation: clignotement 1s infinite alternate; /* Animation */
+        }
+
+        /* Animation de clignotement */
+        @keyframes clignotement {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+
+    <button id="mon-bouton" onclick="window.location.href = 'app.html'">ACHETE L'APPLICATION</button>
+
+    <!-- Élément cible pour le lien interne -->
+    <div id="mon-lien">
+        <!-- Contenu lié -->
+    </div>
       
     <h1>Passer votre commande</h1>
-    <form style="text-align: center;" action="mailto:mabandwemarco@gmail.com" method="post" enctype="text/plain">
-        <label for="name">Nom complet  :</label>
-        <input type="text" id="name" name="NOMS" required><br>
+    <form action="mailto:mabandwemarco@gmail.com" method="post" enctype="text/plain">
+      <label for="name">Nom :</label>
+      <input type="text" id="name" name="Nom" required><br>
+      <label for="name">Num de tel :</label>
+      <input type="number" id="name" name="Tel" required><br>
 
-        <label for="name">Numéro de tél :</label>
-        <input type="text" id="email" name="telephon" required><br>
 
-        <label for="email">Adresse e-mail :</label>
-        <input type="email" id="email" name="email" required><br>
+      <label for="email">Adresse e-mail :</label>
+      <input type="email" id="email" name="email" required><br>
 
-        <label for="message">commande :</label>
-        <textarea id="message" name="MESSAGE" rows="4" required></textarea><br>
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" rows="4" required></textarea><br>
 
-        <input class="fina" type="submit" value="ENVOYER">
+      <input type="submit" value="Envoyer">
+  </form>
     </form>
 </body>
 <!--le pied de page-->

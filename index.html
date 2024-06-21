@@ -68,6 +68,33 @@
       <div id="message">
         <p>la chanson de notre artiste Andy'B est déjà disponible.</p>
       </div>
+      <br>
+      <style>
+        /* Style du bouton */
+        #mon-bouton {
+            background-color: #3CBC8D;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            animation: clignotement 1s infinite alternate; /* Animation */
+        }
+
+        /* Animation de clignotement */
+        @keyframes clignotement {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+
+    <button id="mon-bouton" onclick="window.location.href = 'app.html'">ACHETE L'APPLICATION</button>
+
+    <!-- Élément cible pour le lien interne -->
+    <div id="mon-lien">
+        <!-- Contenu lié -->
+    </div>
       
     <section class="section main-section parallax-scene-js" style="background:url('Phot/marco.jpg') no-repeat center center; background-size:cover;">
         <div class="container">

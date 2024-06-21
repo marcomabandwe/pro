@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'enregistrement</title>
+</head>
+<body>
+    <style>
+        /* Style pour le formulaire */
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        /* Style pour les champs de saisie */
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Style pour le bouton de soumission */
+        input[type="submit"] {
+            width: 100%;
+            background-color: #3CBC8D;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Style pour le bouton de téléchargement (désactivé par défaut) */
+        #telechargement {
+            width: 100%;
+            padding: 10px;
+            background-color: #ccc;
+            color: #666;
+            border: none;
+            border-radius: 4px;
+            cursor: not-allowed;
+        }
+
+        /* Style pour le bouton de téléchargement lorsqu'il est activé */
+        #telechargement:enabled {
+            background-color: #3CBC8D;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+    <form action="mailto:mabandwemarco@gmail.com" method="post">
+        <!-- Vos champs de formulaire ici -->
+        <input type="text" name="nom" placeholder="Nom">
+        <input type="text" name="Adresse" placeholder="Nom">
+        <input type="number" name="Num tel" placeholder="Nom">
+        <input type="text" name="nom de l'entreprise" placeholder="Nom">
+        <input type="text" name="l'app pour la classe de:" placeholder="Nom">
+        <input type="email" name="email" placeholder="E-mail">
+        <!-- Autres champs ici -->
+
+        <!-- Bouton de soumission -->
+        <input type="submit" value="Envoyer">
+    </form>
+
+    <!-- Bouton de téléchargement -->
+  <a href="telech.html"> <button id="telechargement" disabled>Télécharger CALBUL</button></a> 
+<a href="index.html"><p>PAGE D'ACCEUIL</p></a>
+    <script>
+        // Vérification de l'e-mail lors de la soumission du formulaire
+        const emailInput = document.querySelector('input[name="email"]');
+        const telechargementButton = document.getElementById('telechargement');
+
+        emailInput.addEventListener('input', () => {
+            const email = emailInput.value.trim();
+            const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            telechargementButton.disabled = !isValidEmail;
+        });
+    </script>
+</body>
+</html>
