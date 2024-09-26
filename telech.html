@@ -67,7 +67,7 @@
       <p><span style="text-decoration: solid black 2px;">NB:</span> une fois l'operation effectuée vous allez patientez pendant 48h pour telecharger votre CALBUL.</p>
       <br>
       <br>
-      <a class="cvna" href="CALBUL5EME PRIMAIRE.xlsm"> CALBUL</a>
+      
 
       <style>
         /* Style du bouton */
@@ -88,9 +88,26 @@
         }
     </style>
 </head>
+    <style>
+        #texteClignotant {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
 
-    <button id="mon-bouton">CALBUL</button>
+    <div id="texteClignotant">CLIC ICI POUR TELECHARGER VOTRE CALBUL</div>
 
+    <script>
+        function clignoterTexte() {
+            const element = document.getElementById('texteClignotant');
+            const couleurs = ['red', 'green', 'blue', 'yellow', 'purple'];
+            const couleurAleatoire = couleurs[Math.floor(Math.random() * couleurs.length)];
+            element.style.color = couleurAleatoire;
+        }
+
+        setInterval(clignoterTexte, 500); // Change de couleur toutes les 500ms
+    </script>
     <!-- Élément cible pour le lien interne -->
     <div id="mon-lien">
         <!-- Contenu lié -->
