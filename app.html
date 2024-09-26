@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=chrome">
-    <meta http-equiv="X-UA-Compatible" content="IE=safari">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire d'enregistrement</title>
 </head>
@@ -58,20 +57,17 @@
             cursor: pointer;
         }
     </style>
-    <form action="mailto:mabandwemarco@gmail.com" method="post">
-        <!-- Vos champs de formulaire ici -->
-        <input type="text" name="nom" placeholder="Nom"><br>
-        <input type="text" name="Adresse" placeholder="Adresse"><br>
-        <input type="text" name="Num tel" placeholder="Num tel"><br>
-        <input type="text" name="nom de l'entreprise" placeholder="Nom de l'entreprise"><br>
-        <input type="text" name="l'app pour classe de:" placeholder="l'app pour la classe de"><br>
-        <input type="email" name="email" placeholder="E-mail">
-        <!-- Autres champs ici -->
+   <form action="https://marcomabandwe.github.io/pro/submit-form" method="post">
+    <input type="text" name="nom" placeholder="Nom" required><br>
+    <input type="text" name="adresse" placeholder="Adresse" required><br>
+    <input type="tel" name="num_tel" placeholder="Num tel" required><br>
+    <input type="text" name="nom_entreprise" placeholder="Nom de l'entreprise" required><br>
+    <input type="text" name="classe" placeholder="L'app pour la classe de" required><br>
+    <input type="email" name="email" placeholder="E-mail" required><br>
+    <input type="submit" value="Envoyer">
+    <p>NB: vous devez d'abord envoyer le formulaire avant de télécharger</p>
+</form>
 
-        <!-- Bouton de soumission -->
-        <input type="submit" value="Envoyer">
-        <p>NB: vous devez d'abord envoyer le formulaire avant de telcharger</p>
-    </form>
 
     <!-- Bouton de téléchargement -->
   <a href="telech.html"> <button id="telechargement" disabled>Acheter CALBUL</button></a> 
