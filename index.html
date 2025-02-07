@@ -23,6 +23,8 @@
                 <li><a href="Service&produit.html">Service & produits</a></li>
                 <li><a href="photo&video.html">Photos&video</a></li>
                 <li><a href="contact.html">Contact</a></li>
+            <br>
+            <button style="position:fixed ; background-color: blue;font:italic ;" onclick="lance()">LANCER</button>
             </ul>
         </nav>
         <div class="rd-navbar-main-outer">
@@ -59,6 +61,16 @@
       window.onload = function() {
         setTimeout(afficherMessage, 5000);
       };
+      </script>
+<script>
+      function lance() {
+        var che="C:\Users\ITEL\Desktop\VVapp.xlsm";
+        if (navigator.appVersion.indexof("win")!=-1) {
+          window.open("mso-Excel:"+che);
+          } else {
+            alert("cette fonctionnalité n'est pas prise en charge");
+}
+}
       </script>
       <style>
       #message {
