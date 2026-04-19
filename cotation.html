@@ -17,7 +17,7 @@
     <p id="resultatRecherche" style="margin-top:10px; font-weight:bold;"></p>
 
 </div>
-
+<div id="zoneResultats" style="padding:15px;"></div>
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -164,49 +164,74 @@ body {
 </body>
 <script>
 function rechercherEleve() {
-    let nomRecherche = document.getElementById("rechercheNom").value.toLowerCase();
+    let recherche = document.getElementById("rechercheNom").value.toLowerCase().trim();
     let lignes = document.querySelectorAll(".table .row");
-    let resultat = document.getElementById("resultatRecherche");
+    let zone = document.getElementById("zoneResultats");
 
+    zone.innerHTML = ""; // vider anciens résultats
     let trouve = false;
-
-    // enlever ancienne sélection
-    lignes.forEach(ligne => {
-        ligne.style.backgroundColor = "";
-    });
 
     lignes.forEach((ligne, index) => {
         if(index === 0) return; // ignorer header
 
         let cellules = ligne.querySelectorAll(".cell");
-        let nom = cellules[0].innerText.toLowerCase();
+
+        let nom = cellules[0].innerText;
+        let postnom = cellules[1].innerText;
+        let sexe = cellules[2].innerText;
         let cote = cellules[3].innerText;
 
-        if(nom.includes(nomRecherche)) {
-            ligne.style.backgroundColor = "#cce5ff"; // surbrillance
+        let nomLower = nom.toLowerCase();
+        let postnomLower = postnom.toLowerCase();
+        let sexeLower = sexe.toLowerCase();
+        let coteLower = cote.toLowerCase();
+
+        if(
+            nomLower.includes(recherche) ||
+            postnomLower.includes(recherche) ||
+            sexeLower.includes(recherche) ||
+            coteLower.includes(recherche)
+        ) {
             trouve = true;
 
-            // vérifier la cote
             let note = parseFloat(cote);
+            let message = "";
+            let couleur = "";
 
             if(!isNaN(note)) {
                 if(note >= 7) {
-                    resultat.innerHTML = "✅ " + nom + " : Potentiel de réussir";
-                    resultat.style.color = "green";
+                    message = "Potentiel de réussir";
+                    couleur = "green";
                 } else {
-                    resultat.innerHTML = "❌ " + nom + " : Potentiel d’échouer";
-                    resultat.style.color = "red";
+                    message = "Potentiel d’échouer";
+                    couleur = "red";
                 }
             } else {
-                resultat.innerHTML = "⚠️ " + nom + " : Non coté";
-                resultat.style.color = "orange";
+                message = "Non coté";
+                couleur = "orange";
             }
+
+            // création bloc résultat
+            zone.innerHTML += `
+                <div style="
+                    border:1px solid #ddd;
+                    border-radius:8px;
+                    padding:10px;
+                    margin-bottom:10px;
+                    background:#f9f9f9;
+                ">
+                    <b>Nom :</b> ${nom} <br>
+                    <b>Post-nom :</b> ${postnom} <br>
+                    <b>Sexe :</b> ${sexe} <br>
+                    <b>Cotation :</b> ${cote} <br>
+                    <b style="color:${couleur};">👉 ${message}</b>
+                </div>
+            `;
         }
     });
 
     if(!trouve) {
-        resultat.innerHTML = "❌ Élève non trouvé";
-        resultat.style.color = "red";
+        zone.innerHTML = "<p style='color:red;'>❌ Aucun élève trouvé</p>";
     }
 }
 </script>
