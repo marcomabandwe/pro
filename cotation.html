@@ -6,7 +6,7 @@
 <title>COTATION DU DEVOIR TIC</title>
 <div style="text-align:center; padding:15px;">
     
-    <input type="text" id="rechercheNom" placeholder="Entrez le nom de l'élève"
+    <input type="text" id="rechercheNom" placeholder="Entrez seulement le nom de l'élève"
            style="padding:10px; width:220px; border:1px solid #ccc; border-radius:5px;">
     
     <button onclick="rechercherEleve()"
@@ -162,16 +162,15 @@ body {
 </div>
 
 </body>
-
 <script>
 function rechercherEleve() {
-    let recherche = document.getElementById("rechercheNom").value.toLowerCase().trim();
+    let nomRecherche = document.getElementById("rechercheNom").value.toLowerCase();
     let lignes = document.querySelectorAll(".table .row");
     let resultat = document.getElementById("resultatRecherche");
 
     let trouve = false;
 
-    // reset couleurs
+    // enlever ancienne sélection
     lignes.forEach(ligne => {
         ligne.style.backgroundColor = "";
     });
@@ -180,54 +179,33 @@ function rechercherEleve() {
         if(index === 0) return; // ignorer header
 
         let cellules = ligne.querySelectorAll(".cell");
-
         let nom = cellules[0].innerText.toLowerCase();
-        let postnom = cellules[1].innerText.toLowerCase();
-        let sexe = cellules[2].innerText.toLowerCase();
-        let cote = cellules[3].innerText.toLowerCase();
+        let cote = cellules[3].innerText;
 
-        // recherche dans TOUTES les colonnes
-        if(
-            nom.includes(recherche) ||
-            postnom.includes(recherche) ||
-            sexe.includes(recherche) ||
-            cote.includes(recherche)
-        ) {
-            ligne.style.backgroundColor = "#cce5ff";
+        if(nom.includes(nomRecherche)) {
+            ligne.style.backgroundColor = "#cce5ff"; // surbrillance
             trouve = true;
 
+            // vérifier la cote
             let note = parseFloat(cote);
 
-            // affichage détaillé
             if(!isNaN(note)) {
                 if(note >= 7) {
-                    resultat.innerHTML = `
-                        ✅ Élève trouvé : <br>
-                        Cotation : <b>${note}</b><br>
-                        👉 Potentiel de réussir
-                    `;
+                    resultat.innerHTML = "✅ " + nom + " : Potentiel de réussir";
                     resultat.style.color = "green";
                 } else {
-                    resultat.innerHTML = `
-                        ❌ Élève trouvé : <br>
-                        Cotation : <b>${note}</b><br>
-                        👉 Potentiel d’échouer
-                    `;
+                    resultat.innerHTML = "❌ " + nom + " : Potentiel d’échouer";
                     resultat.style.color = "red";
                 }
             } else {
-                resultat.innerHTML = `
-                    ⚠️ Élève trouvé : <br>
-                    Cotation : <b>${cote}</b><br>
-                    👉 Non coté
-                `;
+                resultat.innerHTML = "⚠️ " + nom + " : Non coté";
                 resultat.style.color = "orange";
             }
         }
     });
 
     if(!trouve) {
-        resultat.innerHTML = "❌ Aucun résultat trouvé";
+        resultat.innerHTML = "❌ Élève non trouvé";
         resultat.style.color = "red";
     }
 }
