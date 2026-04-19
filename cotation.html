@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>COTATION DU DEVOIR TIC</title>
+<div style="text-align:center; padding:15px;">
+    
+    <input type="text" id="rechercheNom" placeholder="Entrez le nom de l'élève"
+           style="padding:10px; width:220px; border:1px solid #ccc; border-radius:5px;">
+    
+    <button onclick="rechercherEleve()"
+            style="padding:10px 15px; background:#007BFF; color:white; border:none; border-radius:5px; cursor:pointer;">
+        Rechercher
+    </button>
+
+    <p id="resultatRecherche" style="margin-top:10px; font-weight:bold;"></p>
+
+</div>
 
 <style>
 body {
@@ -149,4 +162,52 @@ body {
 </div>
 
 </body>
+<script>
+function rechercherEleve() {
+    let nomRecherche = document.getElementById("rechercheNom").value.toLowerCase();
+    let lignes = document.querySelectorAll(".table .row");
+    let resultat = document.getElementById("resultatRecherche");
+
+    let trouve = false;
+
+    // enlever ancienne sélection
+    lignes.forEach(ligne => {
+        ligne.style.backgroundColor = "";
+    });
+
+    lignes.forEach((ligne, index) => {
+        if(index === 0) return; // ignorer header
+
+        let cellules = ligne.querySelectorAll(".cell");
+        let nom = cellules[0].innerText.toLowerCase();
+        let cote = cellules[3].innerText;
+
+        if(nom.includes(nomRecherche)) {
+            ligne.style.backgroundColor = "#cce5ff"; // surbrillance
+            trouve = true;
+
+            // vérifier la cote
+            let note = parseFloat(cote);
+
+            if(!isNaN(note)) {
+                if(note >= 7) {
+                    resultat.innerHTML = "✅ " + nom + " : Potentiel de réussir";
+                    resultat.style.color = "green";
+                } else {
+                    resultat.innerHTML = "❌ " + nom + " : Potentiel d’échouer";
+                    resultat.style.color = "red";
+                }
+            } else {
+                resultat.innerHTML = "⚠️ " + nom + " : Non coté";
+                resultat.style.color = "orange";
+            }
+        }
+    });
+
+    if(!trouve) {
+        resultat.innerHTML = "❌ Élève non trouvé";
+        resultat.style.color = "red";
+    }
+}
+</script>
 </html>
